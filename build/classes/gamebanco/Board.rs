@@ -1,2 +1,0 @@
-gamebanco.Board
-gamebanco.ToaDoBTL

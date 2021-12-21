@@ -31,11 +31,11 @@ public class Board extends GameObject{
                 
                 if( DoRongDai.b[i][j] == 1){              
                     try {
-                    wall = ImageIO.read(new File("image\\wall"+Mang.tuong+".png"));
+                    wall = ImageIO.read(new File("image\\Wall\\wall"+Mang.tuong+".png"));
                 } catch (IOException ex) {
                     Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                    g.drawImage(wall, x, y,32,32, null);
+                    g.drawImage(wall, x, y,32, 32, null);
                 }
                 else if( DoRongDai.b[i][j] != 1){              
                     g.setColor(Color.BLACK);
@@ -45,7 +45,7 @@ public class Board extends GameObject{
         }
          
         try {
-            anh = ImageIO.read(new File("image\\bachkhoa.png"));
+            anh = ImageIO.read(new File("image\\spkt.png"));
         } catch (IOException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,7 +56,7 @@ public class Board extends GameObject{
         } catch (IOException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }
-        g.drawImage(wing, 480,360 , null);
+        g.drawImage(wing, 480,370, null);
         
         g.setColor(Color.RED);
         g.setFont(new Font("Arial", Font.BOLD, 20)); //font, type, size
@@ -69,17 +69,17 @@ public class Board extends GameObject{
         if(ToaDoBTL.ngang == 550)
             ToaDoBTL.chay = 1;
                
-        g.drawString("BÀI TẬP LỚN", ToaDoBTL.ngang  , ToaDoBTL.doc);
+        g.drawString("ĐỒ ÁN MÔN HỌC", ToaDoBTL.ngang  , ToaDoBTL.doc);
         g.setColor(color);
-        g.drawString("TRÍ TUỆ NHÂN TẠO !", 480, 260);
+        g.drawString("TRÍ TUỆ NHÂN TẠO", 487, 260);
         
         g.setColor(Color.BLACK);
         
-        g.drawString("Điểm địch : " + Mang.DiemDich,500, 300);
-        g.drawString("Điểm ta   : " + Mang.DiemTa,500, 330);
+        g.drawString("Điểm địch: " + Mang.DiemDich,500, 300);
+        g.drawString("Điểm ta: " + Mang.DiemTa,500, 330);
         g.drawString("Thời gian: " + Mang.gio + ":" + Mang.phut +":" + Mang.giay , 500, 360);
-        g.drawString("Level :" + (7- Mang.level), 570 , 400);
-//        g.drawString(" MINH BK ", 570, 450);
+        g.drawString("Level " + (7- Mang.level), 580 , 400);
+        g.drawString("Nhóm 5 ", 580, 430);
     }
 }
 class ToaDoBTL
