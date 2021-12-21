@@ -186,7 +186,7 @@ final class GameManager extends JPanel implements Runnable{
        Mang.tuong = dc.RanDom(69);                                  // random các loại tường
        Mang.car = dc.RanDom(5);                                    // random cac loại car
        Mang.carNC = dc.RanDom(2);
-       dc.NhapMapTuFile("map"+dc.RanDom(10)+".txt");                   //nhập map và tọa độ các xe  : map là random.....từ 1 trong 20 map
+       dc.NhapMapTuFile("map"+dc.RanDom(10)+".txt");                   //nhập map và tọa độ các xe  : map là random.....từ 1 trong 10 map
        carNC = new CarNguoiChoi(1,Mang.x,Mang.y,true,true);      // sau khi nhập file thì ta mới có tọa độ của carNC, nên nó phải đặt ở dưới
    }
  
