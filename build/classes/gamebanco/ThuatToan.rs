@@ -1,2 +1,0 @@
-gamebanco.DiemCuoi
-gamebanco.ThuatToan

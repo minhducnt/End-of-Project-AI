@@ -5,25 +5,26 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Node {
-    
-    private boolean start ;     //có phải là điểm bắt đầu hay không
-    private boolean target ;     // có phải là điểm kết thúc hay không
-    private boolean wall;        // có phải là tường hay không
-    private int xPos,yPos;       // tọa độ thực trong Frame
-    private int fx,fy ;          // chỉ số ô trong mảng Node 
-    private Node parent;         // Node cha của nó.
+
+    private boolean start; // có phải là điểm bắt đầu hay không
+    private boolean target; // có phải là điểm kết thúc hay không
+    private boolean wall; // có phải là tường hay không
+    private int xPos, yPos; // tọa độ thực trong Frame
+    private int fx, fy; // chỉ số ô trong mảng Node
+    private Node parent; // Node cha của nó.
     private Node children;
-    private boolean onPath;      
+    private boolean onPath;
     private int H;
     private int G;
     private int F;
     private boolean open = false;
-    private boolean close = false; 
-    
-    public Node(int x,int y){
-         initNode(x,y);
+    private boolean close = false;
+
+    public Node(int x, int y) {
+        initNode(x, y);
     }
-    public void initNode(int x,int y){
+
+    public void initNode(int x, int y) {
         H = 0;
         G = 0;
         F = 0;
@@ -35,38 +36,37 @@ public class Node {
         fx = x;
         fy = y;
     }
-    
-    public void clear(){
+
+    public void clear() {
         start = false;
-	target = false;
-	wall = false;
-	onPath = false;
+        target = false;
+        wall = false;
+        onPath = false;
         parent = null;
         children = null;
     }
 
-    
-    public void calcH(Node target,int h){
-        H = (int)((Math.sqrt((target.fx - fx)*(target.fx - fx) + (target.fy - fy)*(target.fy - fy)))*10);
+    public void calcH(Node target, int h) {
+        H = (int) ((Math.sqrt((target.fx - fx) * (target.fx - fx) + (target.fy - fy) * (target.fy - fy))) * 10);
     }
-    public int calcG(Node n){
+
+    public int calcG(Node n) {
         int temp = n.getG();
-        if(fx != n.fx && fy != n.fy) {         //nếu node1 đang xét không là node theo đường chéo của node.
-	    temp += 14;
-	}
-	else temp += 10;                      //là node theo đường dọc , đường ngang
-	    return temp;
+        if (fx != n.fx && fy != n.fy) { // nếu node1 đang xét không là node theo đường chéo của node.
+            temp += 14;
+        } else
+            temp += 10; // là node theo đường dọc , đường ngang
+        return temp;
     }
+
     public int getF() {
         return G + H;
     }
-    public void setF(int giatri){
+
+    public void setF(int giatri) {
         F = giatri;
     }
 
-    
-    
-    
     public boolean isStart() {
         return start;
     }
@@ -98,13 +98,15 @@ public class Node {
     public Node getParent() {
         return parent;
     }
-    
-    public Node getChildren(){
+
+    public Node getChildren() {
         return children;
     }
-    public void setChilden(Node children){
+
+    public void setChilden(Node children) {
         this.children = children;
     }
+
     public int getH() {
         return H;
     }
@@ -141,16 +143,14 @@ public class Node {
         this.yPos = yPos;
     }
 
-    
-    
     public Node setX(int x) {
-	xPos = x;
-	return this;
+        xPos = x;
+        return this;
     }
-	
+
     public Node setY(int y) {
-	yPos = y;
-	return this;
+        yPos = y;
+        return this;
     }
 
     public void setParent(Node parent) {
@@ -165,12 +165,12 @@ public class Node {
         this.G = G;
     }
 
-    
     public void setOpen() {
-		open = true;
-	}
+        open = true;
+    }
+
     public void setClosed() {
-	close = true;
+        close = true;
     }
 
     public boolean isOnPath() {
@@ -178,7 +178,7 @@ public class Node {
     }
 
     public void setPath() {
-	onPath = true;
-    }    
-    
+        onPath = true;
+    }
+
 }
