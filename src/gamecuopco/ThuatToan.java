@@ -1,5 +1,5 @@
 
-package gamebanco;
+package gamecuopco;
 
 import java.awt.Graphics;
 import java.util.ArrayList;

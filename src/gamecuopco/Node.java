@@ -1,5 +1,5 @@
 
-package gamebanco;
+package gamecuopco;
 
 import java.awt.Color;
 import java.awt.Graphics;

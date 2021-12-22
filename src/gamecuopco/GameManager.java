@@ -1,5 +1,5 @@
 
-package gamebanco;
+package gamecuopco;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,12 +8,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.annotation.Target;
 import java.util.*;
 import java.util.logging.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 final class GameManager extends JPanel implements Runnable {
     public Car carNC;
@@ -23,7 +25,7 @@ final class GameManager extends JPanel implements Runnable {
     public Map<String, Car> map = new HashMap<>(); // Map này liên hệ giữa tên và chiếc car
     public Map<String, ThuatToan> map1 = new HashMap<>(); // Mao này liên hẹ giữa tên car và thuật toán. 2 tên là cùng 1
                                                           // car.
-    private Thread threadT;
+    private final Thread threadT;
 
     public static int ThoiGianDich = 0; // Thời gian để khởi tạo lại đích
 
@@ -67,6 +69,7 @@ final class GameManager extends JPanel implements Runnable {
 
     }
 
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(DoRongDai.countW * DoRongDai.cellW + DoRongDai.Them, DoRongDai.countH * DoRongDai.cellH);
     }
@@ -220,19 +223,14 @@ final class GameManager extends JPanel implements Runnable {
         Mang.tuong = dc.RanDom(70); // Đổi Nhạc, đổi tường, đổi car
         Mang.car = dc.RanDom(5);
 
-        InputStream is = null;
         try {
-            is = new FileInputStream(new File("./image/nhachay4.wav"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(GameBanCo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        AudioStream as = null;
-        try {
-            as = new AudioStream(is);
-        } catch (IOException ex) {
-            Logger.getLogger(GameBanCo.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        AudioPlayer.player.start(as);
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay4.wav").getAbsoluteFile());
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch(IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+                Logger.getLogger(GameBanCo.class.getName()).log(Level.SEVERE, null, ex);
+            }
         if (Mang.level > 1) {
             Mang.level--;
             Mang.DoNhay += 2;

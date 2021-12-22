@@ -1,19 +1,14 @@
 
-package gamebanco;
+package gamecuopco;
 
 import java.awt.*;
-import java.awt.event.*;
-
-import java.awt.image.BufferedImage;
 import java.io.*;
-import static java.lang.Thread.sleep;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
 
 class Mang // class này lưu trữ tọa độ của n những chiếc xe đầu tiên, dc khởi tạo , và một
            // số thứ ....
@@ -53,10 +48,9 @@ class GameObject {
 
 public class GameBanCo extends JFrame {
 
-    private JPanel gm = new GameManager();;
+    private final JPanel gm = new GameManager();;
 
     public GameBanCo() {
-
         initComponents();
         initEvents();
         initWindow();
@@ -94,12 +88,15 @@ public class GameBanCo extends JFrame {
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
-
-        InputStream is = new FileInputStream(new File("./image/nhachay2.wav"));
-        AudioStream as = new AudioStream(is);
-        AudioPlayer.player.start(as);
+        try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay2.wav").getAbsoluteFile());
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInputStream);
+                clip.start();
+            } catch(IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+                System.out.println("Error with playing sound.");
+            }
         new GameBanCo();
-
     }
 
 }
