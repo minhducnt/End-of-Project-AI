@@ -53,8 +53,6 @@ final class GameManager extends JPanel implements Runnable {
         map1.put("Car3", new ThuatToan(Mang.a[3][0], Mang.a[3][1]));
         map.put("Car4", new Car(2, Mang.a[4][0], Mang.a[4][1], false, false));
         map1.put("Car4", new ThuatToan(Mang.a[4][0], Mang.a[4][1]));
-        map.put("Car5", new Car(2, Mang.a[5][0], Mang.a[5][1], false, false));
-        map1.put("Car5", new ThuatToan(Mang.a[5][0], Mang.a[5][1]));
     }
 
     @Override
