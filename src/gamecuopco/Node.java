@@ -1,16 +1,12 @@
-
 package gamecuopco;
-
-import java.awt.Color;
-import java.awt.Graphics;
 
 public class Node {
 
-    private boolean start; // có phải là điểm bắt đầu hay không
-    private boolean target; // có phải là điểm kết thúc hay không
-    private boolean wall; // có phải là tường hay không
-    private int xPos, yPos; // tọa độ thực trong Frame
-    private int fx, fy; // chỉ số ô trong mảng Node
+    private boolean start; // Có phải là điểm bắt đầu hay không
+    private boolean target; // Có phải là điểm kết thúc hay không
+    private boolean wall; // Có phải là tường hay không
+    private int xPos, yPos; // Tọa độ thực trong Frame
+    private int fx, fy; // Chỉ số ô trong mảng Node
     private Node parent; // Node cha của nó.
     private Node children;
     private boolean onPath;
@@ -52,10 +48,11 @@ public class Node {
 
     public int calcG(Node n) {
         int temp = n.getG();
-        if (fx != n.fx && fy != n.fy) { // nếu node1 đang xét không là node theo đường chéo của node.
+        if (fx != n.fx && fy != n.fy) { // Nếu node1 đang xét không là node theo đường chéo của node.
             temp += 14;
-        } else
-            temp += 10; // là node theo đường dọc , đường ngang
+        } else {
+            temp += 10; // Là node theo đường dọc , đường ngang
+        }
         return temp;
     }
 
@@ -71,20 +68,40 @@ public class Node {
         return start;
     }
 
+    public void setStart(boolean start) {
+        this.start = start;
+    }
+
     public boolean isTarget() {
         return target;
+    }
+
+    public void setTarget(boolean target) {
+        this.target = target;
     }
 
     public boolean isWall() {
         return wall;
     }
 
+    public void setWall(boolean wall) {
+        this.wall = wall;
+    }
+
     public int getxPos() {
         return xPos;
     }
 
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
     public int getyPos() {
         return yPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
     }
 
     public int getFX() {
@@ -99,6 +116,10 @@ public class Node {
         return parent;
     }
 
+    public void setParent(Node parent) {
+        this.parent = parent;
+    }
+
     public Node getChildren() {
         return children;
     }
@@ -111,8 +132,16 @@ public class Node {
         return H;
     }
 
+    public void setH(int H) {
+        this.H = H;
+    }
+
     public int getG() {
         return G;
+    }
+
+    public void setG(int G) {
+        this.G = G;
     }
 
     public boolean isOpen() {
@@ -123,26 +152,6 @@ public class Node {
         return close;
     }
 
-    public void setStart(boolean start) {
-        this.start = start;
-    }
-
-    public void setTarget(boolean target) {
-        this.target = target;
-    }
-
-    public void setWall(boolean wall) {
-        this.wall = wall;
-    }
-
-    public void setxPos(int xPos) {
-        this.xPos = xPos;
-    }
-
-    public void setyPos(int yPos) {
-        this.yPos = yPos;
-    }
-
     public Node setX(int x) {
         xPos = x;
         return this;
@@ -151,18 +160,6 @@ public class Node {
     public Node setY(int y) {
         yPos = y;
         return this;
-    }
-
-    public void setParent(Node parent) {
-        this.parent = parent;
-    }
-
-    public void setH(int H) {
-        this.H = H;
-    }
-
-    public void setG(int G) {
-        this.G = G;
     }
 
     public void setOpen() {

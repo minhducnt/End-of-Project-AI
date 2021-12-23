@@ -1,18 +1,13 @@
-
 package gamecuopco;
 
+import javax.sound.sampled.*;
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.*;
 
-class Mang // class này lưu trữ tọa độ của n những chiếc xe đầu tiên, dc khởi tạo , và một
-           // số thứ ....
+class Mang // Class này lưu trữ tọa độ của n những chiếc xe đầu tiên, dc khởi tạo , và một số thứ ....
 {
+
     static int[][] a;
     static int n;
     static int x, y;
@@ -20,35 +15,37 @@ class Mang // class này lưu trữ tọa độ của n những chiếc xe đầ
     static int ThoiGianGame = 0;
 
     static int Sleep = 100; // Thời gian sleep trong vòng lặp While
-    static int level = 6; // Level tang, thi DoNhay cung tang thay
+    static int level = 6;   // Level tang, thi DoNhay cung tang thay
     static int DoNhay = 5;
     static int gio = 0, phut = 0, giay = 0;
-    static int ThoiGianLap = 640; // Thời gian để game lặp lại, tạo 1 map mới ( 70s nhé - ko phải 700 s) cố tính
-                                  // nhân lên 10 rồi..
-    static int tuong; // cho biết , các hình ảnh ban đầu là gì; bằng cách dùng random
-    static int car; // random những chiếc car bên phe ta, khi mới vào game
+    static int ThoiGianLap = 640; // Thời gian để game lặp lại, tạo 1 map mới ( 70s nhé - ko phải 700 s) cố tính nhân lên 10 rồi..
+    static int tuong;       // Cho biết các hình ảnh ban đầu là gì ? bằng cách dùng random
+    static int car;         // Random những chiếc car bên phe ta, khi mới vào game
     static int carNC;
 }
 
 class DoRongDai {
-    static int cellW = 32; // độ rộng của 1 ô
-    static int cellH = 32; // độ cao của 1 ô.
-    static int countW = 15; // số ô hàng ngang tối đa
-    static int countH = 15; // số ô hàng dọc tối đa
 
-    static int Them = 200; // thêm chiều ngang + 200
-    static int[][] b; // Mảng này lưu tọa độ nhập từ file để vẽ map.
+    static int cellW = 32;  // Độ rộng của 1 ô
+    static int cellH = 32;  // Độ cao của 1 ô.
+    static int countW = 15; // Số ô hàng ngang tối đa
+    static int countH = 15; // Số ô hàng dọc tối đa
+
+    static int Them = 200;  // Thêm chiều ngang + 200
+    static int[][] b;       // Mảng này lưu tọa độ nhập từ file để vẽ map.
 }
 
 class GameObject {
+
     String name;
+
     public void Draw(Graphics g) {
     }
 }
 
 public class GameBanCo extends JFrame {
 
-    private final JPanel gm = new GameManager();;
+    private final JPanel gm = new GameManager();
 
     public GameBanCo() {
         initComponents();
@@ -56,25 +53,26 @@ public class GameBanCo extends JFrame {
         initWindow();
     }
 
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+        try {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay2.wav").getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
+            System.out.println("Bị lỗi khi chơi game !.");
+        }
+        GameBanCo gameBanCo = new GameBanCo();
+    }
+
     private void initComponents() {
         Container cp = this.getContentPane();
-        // cp.setLayout(null);
-
-        gm.setFocusable(true); // xem một thành phần có thể đạt được sự tập trung
-
+        gm.setFocusable(true); // Xem một thành phần có thể đạt được sự tập trung
         cp.add(gm);
     }
 
     private void initEvents() {
         DiChuyenNgauNhien dc = new DiChuyenNgauNhien();
-        // javax.swing.Timer timer = new javax.swing.Timer(Mang.ThoiGianLap * 100, new
-        // ActionListener() {
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        //
-        // }
-        // });
-        // timer.start();
     }
 
     private void initWindow() {
@@ -85,18 +83,6 @@ public class GameBanCo extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
 
-    }
-
-    public static void main(String[] args) throws FileNotFoundException, IOException {
-        try {
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay2.wav").getAbsoluteFile());
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-                clip.start();
-            } catch(IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
-                System.out.println("Error with playing sound.");
-            }
-        new GameBanCo();
     }
 
 }

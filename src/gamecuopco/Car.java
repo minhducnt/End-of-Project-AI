@@ -1,23 +1,22 @@
 package gamecuopco;
 
-import java.awt.Color;
-import java.awt.Graphics;
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 public class Car extends GameObject {
-    public int posW; // vị trí ban đầu theo x của board1
-    public int posH; // vị trí ban đầu theo y của board1
-    public int ViTriW; // tọa độ thực trên bản đồ
+
+    public int posW;    // Vị trí ban đầu theo x của board1
+    public int posH;    // Vị trí ban đầu theo y của board1
+    public int ViTriW;  // Tọa độ thực trên bản đồ
     public int ViTriH;
     public boolean LaNguoiChoi;
-    public boolean LaBenNao; // true : là phe ta, địch là false
-    public int Huong; // huong ngau nhien khi khong co dich
+    public boolean LaBenNao; // true là phe ta, phe địch là false
+    public int Huong;   // Hướng ngẫu nhiên khi không có địch
     public int KhoangDi = 0;
 
     DiChuyenNgauNhien dc = new DiChuyenNgauNhien();
@@ -27,13 +26,13 @@ public class Car extends GameObject {
         this.Huong = huong;
         this.posW = posW;
         this.posH = posH;
-        this.LaNguoiChoi = KoOrCo; // Có phải là ô tô của người chơi hay không
+        this.LaNguoiChoi = KoOrCo; // Có phải là ô tô của người chơi hay không ?
         this.LaBenNao = LaBenNao;
 
         TinhDoDaiThuc();
     }
 
-    public void TinhDoDaiThuc() {
+    public final void TinhDoDaiThuc() {
         this.ViTriW = this.posW * DoRongDai.cellW;
         this.ViTriH = this.posH * DoRongDai.cellH;
     }
@@ -50,26 +49,42 @@ public class Car extends GameObject {
 
     public void DiChuyenDoanNgan() { // Di chuyển nhảy với độ ngắn, nhất định
         if (Mang.ThoiGianGame % Mang.level == 0) {
-            if (this.Huong == 1)
-                this.posW++; // đi sang phải
-            else if (this.Huong == 2)
-                this.posH++; // đi xuông
-            else if (this.Huong == 3)
-                this.posW--; // di sang trai
-            else if (this.Huong == 4)
-                this.posH--; // di len tren
+            switch (this.Huong) {
+                case 1:
+                    this.posW++; // Đi sang phải
+                    break;
+                case 2:
+                    this.posH++; // Đi xuống
+                    break;
+                case 3:
+                    this.posW--; // Đi sang trái
+                    break;
+                case 4:
+                    this.posH--; // Đi lên trên
+                    break;
+                default:
+                    break;
+            }
 
             this.KhoangDi--;
             this.TinhDoDaiThuc(); // Cập nhập độ dài thực
         } else {
-            if (this.Huong == 1)
-                this.ViTriW += Mang.DoNhay;
-            else if (this.Huong == 2)
-                this.ViTriH += Mang.DoNhay;
-            else if (this.Huong == 3)
-                this.ViTriW -= Mang.DoNhay;
-            else if (this.Huong == 4)
-                this.ViTriH -= Mang.DoNhay;
+            switch (this.Huong) {
+                case 1:
+                    this.ViTriW += Mang.DoNhay;
+                    break;
+                case 2:
+                    this.ViTriH += Mang.DoNhay;
+                    break;
+                case 3:
+                    this.ViTriW -= Mang.DoNhay;
+                    break;
+                case 4:
+                    this.ViTriH -= Mang.DoNhay;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
