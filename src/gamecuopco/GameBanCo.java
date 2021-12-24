@@ -58,9 +58,10 @@ public class GameBanCo extends JFrame {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay2.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            FloatControl volume= (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             clip.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
-            System.out.println("Bị lỗi khi chơi game !.");
+            System.out.println("Lỗi khi mở nhạc !.");
         }
         GameBanCo gameBanCo = new GameBanCo();
     }
@@ -76,13 +77,13 @@ public class GameBanCo extends JFrame {
     }
 
     private void initWindow() {
-        this.setSize(300, 300);
         this.setLocation(200, 200);
         this.setTitle("ÁP DỤNG THUẬT GIẢI A* VÀO TRÒ CHƠI");
         this.pack();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
 }

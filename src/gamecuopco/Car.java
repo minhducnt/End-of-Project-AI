@@ -47,7 +47,7 @@ public class Car extends GameObject {
         }
     }
 
-    public void DiChuyenDoanNgan() { // Di chuyển nhảy với độ ngắn, nhất định
+    public void DiChuyenDoanNgan() { // Di chuyển bước nhảy với độ ngắn, nhất định
         if (Mang.ThoiGianGame % Mang.level == 0) {
             switch (this.Huong) {
                 case 1:
@@ -93,28 +93,28 @@ public class Car extends GameObject {
 
         if (LaNguoiChoi) {
             try {
-                carNC = ImageIO.read(new File("image\\Player\\spidey" + Mang.carNC + ".png"));
+                carNC = ImageIO.read(new File("image\\Player\\player" + Mang.carNC + ".png"));
             } catch (IOException ex) {
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }
             g.drawImage(carNC, ViTriW, ViTriH, null);
         } else if (LaBenNao == false) { // Nếu là đội địch
             try {
-                carDich = ImageIO.read(new File("image\\Agent\\enemy.png"));
+                carDich = ImageIO.read(new File("image\\Enemy\\enemy"+ Mang.car + ".png"));
             } catch (IOException ex) {
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }
             g.drawImage(carDich, ViTriW, ViTriH, null);
         } else if (LaBenNao == true) { // Nếu là Phe Ta
             try {
-                carTa = ImageIO.read(new File("image\\Agent\\marvel" + Mang.car + ".png"));
+                carTa = ImageIO.read(new File("image\\Ally\\marvel" + Mang.car + ".png"));
             } catch (IOException ex) {
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }
             g.drawImage(carTa, ViTriW, ViTriH, null);
         }
 
-        if (DiemCuoi.DichConOrKhong) { // Nếu đích còn thì mới vẽ ra chứ
+        if (DiemCuoi.DichConOrKhong) { // Nếu đích cuối còn thì mới vẽ ra
             try {
                 diemKetThuc = ImageIO.read(new File("image\\pizza.png"));
             } catch (IOException ex) {
