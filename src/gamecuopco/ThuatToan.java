@@ -81,7 +81,6 @@ public final class ThuatToan {
     // CHÚ Ý: Trong game thì posW tính theo chiêu ngang, posH tính theo chiều dọc
     // Còn với mảng, nodeList[i][j] , b[i][j] thì i tính theo chiều dọc, j tính theo chiều ngang
     public void calculatePath() {
-
         ArrayList<Node> closed = new ArrayList<>();
         ArrayList<Node> open = new ArrayList<>();
         Node currentNode = start;
@@ -135,9 +134,7 @@ public final class ThuatToan {
                             open.add(node);
                         }
                     }
-
                 }
-
             }
             currentNode = minOfList(open);
         }
