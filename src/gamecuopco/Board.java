@@ -46,7 +46,7 @@ public class Board extends GameObject {
         g.drawImage(anh, 480, 0, 200, 200, null);
 
         try {
-            wing = ImageIO.read(new File("image\\Angle.png"));
+            wing = ImageIO.read(new File("image\\spiderman.png"));
         } catch (IOException ex) {
             Logger.getLogger(Board.class.getName()).log(Level.SEVERE, null, ex);
         }

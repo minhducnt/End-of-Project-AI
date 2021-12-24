@@ -89,7 +89,7 @@ final class GameManager extends JPanel implements Runnable {
                         if (map1.get(key).getTrunggian().getChildren() == null) // nếu con của nó là null, cho nó = target
                         {
                             map1.get(key).setTrunggian(map1.get(key).getTarget());
-                        } else // nếu nó có con, thò cho nó bằng con
+                        } else // nếu nó có con, thì cho nó bằng con
                         {
                             map1.get(key).setTrunggian(map1.get(key).getTrunggian().getChildren());
                         }
@@ -143,7 +143,7 @@ final class GameManager extends JPanel implements Runnable {
                 }
             }
 
-            // Sau 1 khoảng thời gian thì đích thay đổi , ...
+            // Sau 1 khoảng thời gian thì địch thay đổi , ...
             if (!DiemCuoi.DichConOrKhong) // Nếu không còn đích
             {
                 ThoiGianDich += 1;
@@ -171,7 +171,7 @@ final class GameManager extends JPanel implements Runnable {
             }
 
             try {
-                threadT.sleep(Mang.Sleep);
+                Thread.sleep(Mang.Sleep);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GameManager.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -184,13 +184,11 @@ final class GameManager extends JPanel implements Runnable {
     }
 
     public void CacGiaTriKhoiDau() {
-        Mang.tuong = dc.RanDom(69); // random các loại tường
-        Mang.car = dc.RanDom(5); // random cac loại car
+        Mang.tuong = dc.RanDom(10); // Random các loại tường
+        Mang.car = dc.RanDom(5);    // Random cac loại car
         Mang.carNC = dc.RanDom(2);
-        dc.NhapMapTuFile("map" + dc.RanDom(10) + ".txt"); // nhập map và tọa độ các xe : map là random.....từ 1 trong 20
-        // map
-        carNC = new CarNguoiChoi(1, Mang.x, Mang.y, true, true); // sau khi nhập file thì ta mới có tọa độ của carNC,
-        // nên nó phải đặt ở dưới
+        dc.NhapMapTuFile("map" + dc.RanDom(10) + ".txt"); // Nhập map và tọa độ các xe : map là random.....từ 1 trong 20 map
+        carNC = new CarNguoiChoi(1, Mang.x, Mang.y, true, true); // Sau khi nhập file thì ta mới có tọa độ của carNC, nên nó phải đặt ở dưới
     }
 
     private void DiChuyenCarnguoiChoi() {
@@ -217,16 +215,14 @@ final class GameManager extends JPanel implements Runnable {
         });
     }
 
-    public void XuLyThayDoi() { // Sau khoang bao nhieu thi thay đôi, ko thích dùng timer lắm , bất tiện
-        dc.NhapMapTuFile("map" + dc.RanDom(9) + ".txt"); // nhập map và tọa độ các xe : map là random.....từ 1 trong 20
-        // map
+    public void XuLyThayDoi() { // Sau khoảng bao nhiêu thì thay đổi
+        dc.NhapMapTuFile("map" + dc.RanDom(9) + ".txt"); // Nhập map và tọa độ các xe : map là random.....từ 1 trong 10 map
         addComponent(); // Thêm đè vào map đã có lại
-        for (String key : map1.keySet()) // cho các xe máy chạy thuật toán tìm kiếm A Sao
+        for (String key : map1.keySet()) // Cho các xe máy chạy thuật toán tìm kiếm A Sao
         {
             map1.get(key).ChayThuatToan();
         }
-        carNC = new CarNguoiChoi(1, Mang.x, Mang.y, true, true); // sau khi nhập file thì ta mới có tọa độ của carNC,
-        // nên nó phải đặt ở dưới
+        carNC = new CarNguoiChoi(1, Mang.x, Mang.y, true, true); // Sau khi nhập file thì ta mới có tọa độ của carNC nên nó phải đặt ở dưới
         Mang.tuong = dc.RanDom(70); // Đổi Nhạc, đổi tường, đổi car
         Mang.car = dc.RanDom(5);
 
@@ -234,6 +230,7 @@ final class GameManager extends JPanel implements Runnable {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay4.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             clip.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
             Logger.getLogger(GameBanCo.class.getName()).log(Level.SEVERE, null, ex);

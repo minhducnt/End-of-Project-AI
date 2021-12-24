@@ -1,6 +1,6 @@
 package gamecuopco;
 
-public class Node {
+public final class Node {
 
     private boolean start; // Có phải là điểm bắt đầu hay không
     private boolean target; // Có phải là điểm kết thúc hay không
@@ -10,9 +10,7 @@ public class Node {
     private Node parent; // Node cha của nó.
     private Node children;
     private boolean onPath;
-    private int H;
-    private int G;
-    private int F;
+    private int H, G, F;
     private boolean open = false;
     private boolean close = false;
 
@@ -21,9 +19,7 @@ public class Node {
     }
 
     public void initNode(int x, int y) {
-        H = 0;
-        G = 0;
-        F = 0;
+        H = G = F = 0;
         start = false;
         target = false;
         wall = false;

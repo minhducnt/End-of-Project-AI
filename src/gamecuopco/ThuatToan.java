@@ -102,7 +102,6 @@ public final class ThuatToan {
                     if (j < 0 || j > DoRongDai.countW - 1) {
                         continue;
                     }
-
                     if (i != currentNode.getFX() && j != currentNode.getFY()) {
                         continue; // Loại bỏ các nút chéo với currentNode
                     }
