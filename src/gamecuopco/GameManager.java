@@ -79,7 +79,7 @@ final class GameManager extends JPanel implements Runnable {
                 XuLyThayDoi();
             }
 
-            // Cho các car di chuyển đến đích : Sử dụng thuật toán A*
+            // Cho các agent di chuyển đến đích : Sử dụng thuật toán A*
             if (DiemCuoi.DichConOrKhong) {
                 if (Mang.ThoiGianGame % Mang.level == 0) {
                     for (String key : map.keySet()) {
@@ -223,14 +223,15 @@ final class GameManager extends JPanel implements Runnable {
             map1.get(key).ChayThuatToan();
         }
         carNC = new CarNguoiChoi(1, Mang.x, Mang.y, true, true); // Sau khi nhập file thì ta mới có tọa độ của carNC nên nó phải đặt ở dưới
-        Mang.tuong = dc.RanDom(70); // Đổi Nhạc, đổi tường, đổi car
+        Mang.tuong = dc.RanDom(11); // Đổi Nhạc, đổi tường, đổi car
         Mang.car = dc.RanDom(5);
 
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay4.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/music2.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volume.setValue(-15.0f); // Reduce volume by 10 decibels.
             clip.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
             Logger.getLogger(GameBanCo.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,4 +242,4 @@ final class GameManager extends JPanel implements Runnable {
         }
     }
 
-}
+}   

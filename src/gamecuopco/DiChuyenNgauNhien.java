@@ -10,7 +10,7 @@ public class DiChuyenNgauNhien {
     }
 
     public int RanDom(int khoang) {     // Hàm này khi vừa mới vào game, thì random các map, để tạo sự hấp dân.
-        int map;                        // Hoặc random các tuong khi mới vào game
+        int map;                        // Hoặc random các tường khi mới vào game
         map = 1 + (int) (Math.random() * khoang);       // C4 map
         return map;
     }
@@ -108,7 +108,7 @@ public class DiChuyenNgauNhien {
                 }
             }
         } catch (Exception ex) {
-            System.out.printf("Lỗi gặp phảii: %s\n", ex.toString());
+            System.out.printf("Lỗi gặp phải: %s\n", ex.toString());
         }
     }
 }

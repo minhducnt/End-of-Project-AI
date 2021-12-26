@@ -93,7 +93,7 @@ public class Car extends GameObject {
 
         if (LaNguoiChoi) {
             try {
-                carNC = ImageIO.read(new File("image\\Player\\player" + Mang.carNC + ".png"));
+                carNC = ImageIO.read(new File("image\\Player\\player.png"));
             } catch (IOException ex) {
                 Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }

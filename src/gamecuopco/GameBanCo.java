@@ -55,10 +55,11 @@ public class GameBanCo extends JFrame {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/nhachay2.wav").getAbsoluteFile());
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("./image/music1.wav").getAbsoluteFile());
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             FloatControl volume= (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            volume.setValue(-15.0f); // Reduce volume by 10 decibels.
             clip.start();
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException ex) {
             System.out.println("Lỗi khi mở nhạc !.");
